@@ -1,0 +1,61 @@
+.custom-input {
+    background: rgba(0,0,0,0.45) !important;
+    color: #ffffff !important;
+
+    border: 1px solid rgba(13,202,240,0.6) !important;
+    border-radius: 14px !important;
+
+    padding: 12px 15px !important;
+
+    transition: all 0.3s ease;
+}
+
+
+/* Placeholder */
+.custom-input::placeholder {
+    color: rgba(255,255,255,0.75) !important;
+    opacity: 1 !important;
+}
+
+
+
+/* Focus */
+.custom-input:focus {
+
+    background:
+    rgba(0,0,0,0.65) !important;
+
+    color:#ffffff !important;
+
+    border-color:#0dcaf0 !important;
+
+
+    box-shadow:
+    0 0 18px rgba(13,202,240,0.45) !important;
+
+    outline:none !important;
+
+}
+
+
+
+/* Textarea resize */
+textarea.custom-input {
+
+    resize:none;
+
+}
+
+
+
+/* Autofill fix (Chrome) */
+.custom-input:-webkit-autofill,
+.custom-input:-webkit-autofill:hover,
+.custom-input:-webkit-autofill:focus {
+
+    -webkit-text-fill-color:white !important;
+
+    transition:
+    background-color 5000s ease-in-out 0s;
+
+}
