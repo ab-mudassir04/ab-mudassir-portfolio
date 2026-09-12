@@ -1,193 +1,219 @@
-import { Container, Row, Col, Form, Button, Card } from "react-bootstrap";
+import { useState } from "react";
 
 import {
+  FaArrowRight,
   FaEnvelope,
-  FaPhoneAlt,
-  FaLinkedin,
   FaGithub,
-  FaPaperPlane,
+  FaLinkedinIn,
   FaMapMarkerAlt,
+  FaPaperPlane,
 } from "react-icons/fa";
 
-import emailjs from "@emailjs/browser";
-import { useRef, useState } from "react";
+import "./Contact.css";
 
 function Contact() {
-  const form = useRef();
+  const [formData, setFormData] = useState({
+    name: "",
+    email: "",
+    message: "",
+  });
 
-  const [status, setStatus] = useState("");
+  const handleChange = (event) => {
+    const { name, value } = event.target;
 
-  const [loading, setLoading] = useState(false);
-
-  const sendEmail = (e) => {
-    e.preventDefault();
-
-    setLoading(true);
-    setStatus("");
-
-    emailjs
-      .sendForm(
-        "abmudassir04",
-        "template_cdxfmh4",
-        form.current,
-        "htfr0QtHSESzMuchA",
-      )
-
-      .then(() => {
-        setStatus("Message sent successfully 🚀");
-
-        form.current.reset();
-      })
-
-      .catch(() => {
-        setStatus("Failed to send message ❌");
-      })
-
-      .finally(() => {
-        setLoading(false);
-      });
+    setFormData((previous) => ({
+      ...previous,
+      [name]: value,
+    }));
   };
 
-  const glassCard = {
-    background: "rgba(255,255,255,0.06)",
+  const handleSubmit = (event) => {
+    event.preventDefault();
 
-    backdropFilter: "blur(15px)",
+    const subject = encodeURIComponent(`Portfolio Contact - ${formData.name}`);
 
-    WebkitBackdropFilter: "blur(15px)",
+    const body = encodeURIComponent(
+      `Name: ${formData.name}\nEmail: ${formData.email}\n\nMessage:\n${formData.message}`,
+    );
 
-    border: "1px solid rgba(255,255,255,0.12)",
-
-    borderRadius: "25px",
+    window.location.href = `mailto:mudassirabdul84@gmail.com?subject=${subject}&body=${body}`;
   };
 
   return (
-    <section
-      id="contact"
-      className="text-white"
-      style={{
-        minHeight: "100vh",
+    <section id="contact" className="contact-section section">
+      <div className="container-custom">
+        {/* Section Header */}
+        <div className="section-header" data-aos="fade-up">
+          <span className="section-label">Contact</span>
 
-        paddingTop: "70px",
+          <h2 className="section-title">
+            Let's connect and build something useful.
+          </h2>
 
-        background: "linear-gradient(135deg,#050505,#101820)",
-      }}
-    >
-      <Container className="py-5">
-        <div className="text-center mb-5">
-          <h1 className="text-info fw-bold">Contact Me</h1>
-
-          <p className="text-secondary">
-            Let's connect for opportunities and projects
+          <p className="section-description">
+            Whether you have a development opportunity, project idea or simply
+            want to connect, feel free to reach out.
           </p>
         </div>
 
-        <Row className="g-4">
-          {/* LEFT */}
+        <div className="contact-layout">
+          {/* Contact Information */}
+          <div
+            className="contact-intro"
+            data-aos="fade-right"
+            data-aos-delay="80"
+          >
+            <span className="contact-number">01</span>
 
-          <Col lg={5}>
-            <Card
-              className="border-0 shadow-lg h-100 text-white"
-              style={glassCard}
-            >
-              <Card.Body className="p-4">
-                <h3 className="text-info mb-4">Get In Touch</h3>
+            <h3>Start a conversation.</h3>
 
-                <p className="text-secondary">
-                  <FaEnvelope className="text-info me-2" />
-                  mudassirabdul84@gmail.com
-                </p>
+            <p>
+              I am interested in opportunities where I can contribute to
+              real-world software development, work with experienced teams and
+              continue growing as a developer.
+            </p>
 
-                <p className="text-secondary">
-                  <FaPhoneAlt className="text-info me-2" />
-                  +91 8237209779
-                </p>
+            <div className="contact-details">
+              <a
+                href="mailto:mudassirabdul84@gmail.com"
+                className="contact-detail"
+              >
+                <span className="contact-detail-icon">
+                  <FaEnvelope />
+                </span>
 
-                <p className="text-secondary">
-                  <FaMapMarkerAlt className="text-info me-2" />
-                  India
-                </p>
+                <span>
+                  <small>Email</small>
+                  <strong>mudassirabdul84@gmail.com</strong>
+                </span>
+              </a>
 
-                <hr className="border-secondary" />
+              <div className="contact-detail">
+                <span className="contact-detail-icon">
+                  <FaMapMarkerAlt />
+                </span>
+
+                <span>
+                  <small>Location</small>
+                  <strong>India</strong>
+                </span>
+              </div>
+            </div>
+
+            {/* Social Links */}
+            <div className="contact-social-area">
+              <span>CONNECT WITH ME</span>
+
+              <div className="contact-socials">
+                <a
+                  href="https://github.com/ab-mudassir04"
+                  target="_blank"
+                  rel="noreferrer"
+                  aria-label="GitHub"
+                >
+                  <FaGithub />
+                  <span>GitHub</span>
+                </a>
 
                 <a
                   href="https://www.linkedin.com/in/ab-mudassir04/"
                   target="_blank"
                   rel="noreferrer"
-                  className="d-block text-white text-decoration-none mb-3"
+                  aria-label="LinkedIn"
                 >
-                  <FaLinkedin className="text-info me-2" />
-                  LinkedIn
+                  <FaLinkedinIn />
+                  <span>LinkedIn</span>
                 </a>
+              </div>
+            </div>
+          </div>
 
-                <a
-                  href="https://github.com/ab-mudassir04"
-                  target="_blank"
-                  rel="noreferrer"
-                  className="d-block text-white text-decoration-none"
-                >
-                  <FaGithub className="text-info me-2" />
-                  GitHub
-                </a>
-              </Card.Body>
-            </Card>
-          </Col>
+          {/* Contact Form */}
+          <div
+            className="contact-form-wrapper"
+            data-aos="fade-left"
+            data-aos-delay="140"
+          >
+            <div className="contact-form-header">
+              <div>
+                <span>02</span>
+                <h3>Send a message</h3>
+              </div>
 
-          {/* FORM */}
+              <FaPaperPlane />
+            </div>
 
-          <Col lg={7}>
-            <Card className="border-0 shadow-lg h-100" style={glassCard}>
-              <Card.Body className="p-4">
-                <h3 className="text-info mb-4">Send Message</h3>
+            <form className="contact-form" onSubmit={handleSubmit}>
+              <div className="contact-form-row">
+                <div className="contact-field">
+                  <label htmlFor="name">Your Name</label>
 
-                <Form ref={form} onSubmit={sendEmail}>
-                  <Form.Control
-                    className="custom-input mb-3"
-                    name="user_name"
+                  <input
+                    id="name"
+                    type="text"
+                    name="name"
+                    value={formData.name}
+                    onChange={handleChange}
                     placeholder="Enter your name"
                     required
                   />
+                </div>
 
-                  <Form.Control
-                    className="custom-input mb-3"
-                    name="user_email"
+                <div className="contact-field">
+                  <label htmlFor="email">Email Address</label>
+
+                  <input
+                    id="email"
                     type="email"
-                    placeholder="Enter email address"
+                    name="email"
+                    value={formData.email}
+                    onChange={handleChange}
+                    placeholder="Enter your email"
                     required
                   />
+                </div>
+              </div>
 
-                  <Form.Control
-                    className="custom-input mb-3"
-                    name="user_phone"
-                    placeholder="Enter phone number"
-                  />
+              <div className="contact-field">
+                <label htmlFor="message">Message</label>
 
-                  <Form.Control
-                    className="custom-input mb-3"
-                    as="textarea"
-                    rows={5}
-                    name="message"
-                    placeholder="Write your message here..."
-                    required
-                  />
+                <textarea
+                  id="message"
+                  name="message"
+                  value={formData.message}
+                  onChange={handleChange}
+                  placeholder="Tell me about your opportunity or project..."
+                  rows="6"
+                  required
+                />
+              </div>
 
-                  <Button
-                    type="submit"
-                    variant="info"
-                    className="rounded-pill px-4 fw-bold"
-                    disabled={loading}
-                  >
-                    <FaPaperPlane className="me-2" />
+              <button type="submit" className="contact-submit">
+                <span>Send Message</span>
+                <FaArrowRight />
+              </button>
+            </form>
 
-                    {loading ? "Sending..." : "Send Message"}
-                  </Button>
+            <p className="contact-form-note">
+              Your email client will open with the message prepared for sending.
+            </p>
+          </div>
+        </div>
 
-                  {status && <p className="mt-3 text-success">{status}</p>}
-                </Form>
-              </Card.Body>
-            </Card>
-          </Col>
-        </Row>
-      </Container>
+        {/* Closing Statement */}
+        <div
+          className="contact-closing"
+          data-aos="fade-up"
+          data-aos-delay="180"
+        >
+          <span className="contact-closing-line" />
+
+          <p>
+            Open to connecting with developers, recruiters and teams working on
+            meaningful software products.
+          </p>
+        </div>
+      </div>
     </section>
   );
 }

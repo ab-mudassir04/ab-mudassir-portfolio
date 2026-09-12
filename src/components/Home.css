@@ -1,0 +1,1442 @@
+/* =========================================================
+   HOME / HERO
+   AWS-INSPIRED DARK TRANSPARENT DESIGN
+   FULLY RESPONSIVE
+   ========================================================= */
+
+.home-section {
+  position: relative;
+
+  min-height: 100vh;
+
+  display: flex;
+  align-items: center;
+
+  /* Reduced navbar-to-content space */
+  padding: 40px 0 55px;
+
+  overflow: hidden;
+
+  background: transparent;
+}
+
+
+/* =========================================================
+   BACKGROUND
+   ========================================================= */
+
+.home-background {
+  position: absolute;
+  inset: 0;
+
+  pointer-events: none;
+  overflow: hidden;
+
+  z-index: 0;
+}
+
+
+.home-grid {
+  position: absolute;
+  inset: 0;
+
+  opacity: 0.28;
+
+  background-image:
+    linear-gradient(
+      rgba(255, 255, 255, 0.012) 1px,
+      transparent 1px
+    ),
+    linear-gradient(
+      90deg,
+      rgba(255, 255, 255, 0.012) 1px,
+      transparent 1px
+    );
+
+  background-size: 72px 72px;
+
+  mask-image:
+    linear-gradient(
+      to bottom,
+      black 0%,
+      rgba(0, 0, 0, 0.55) 55%,
+      transparent 100%
+    );
+
+  -webkit-mask-image:
+    linear-gradient(
+      to bottom,
+      black 0%,
+      rgba(0, 0, 0, 0.55) 55%,
+      transparent 100%
+    );
+}
+
+
+.home-glow {
+  position: absolute;
+
+  border-radius: 50%;
+
+  pointer-events: none;
+
+  filter: blur(100px);
+}
+
+
+.home-glow-one {
+  width: 420px;
+  height: 420px;
+
+  top: -100px;
+  right: -50px;
+
+  background: rgba(13, 202, 240, 0.035);
+}
+
+
+.home-glow-two {
+  width: 300px;
+  height: 300px;
+
+  left: -160px;
+  bottom: -100px;
+
+  background: rgba(13, 202, 240, 0.022);
+}
+
+
+/* =========================================================
+   MAIN LAYOUT
+   ========================================================= */
+
+.home-layout {
+  position: relative;
+
+  z-index: 1;
+
+  width: 100%;
+
+  display: grid;
+
+  grid-template-columns:
+    minmax(0, 1.15fr)
+    minmax(330px, 0.85fr);
+
+  align-items: center;
+
+  gap: 65px;
+}
+
+
+/* =========================================================
+   LEFT CONTENT
+   ========================================================= */
+
+.home-content {
+  position: relative;
+
+  width: 100%;
+  max-width: 650px;
+}
+
+
+/* =========================================================
+   AVAILABILITY
+   ========================================================= */
+
+.home-availability {
+  width: fit-content;
+
+  display: inline-flex;
+  align-items: center;
+
+  gap: 8px;
+
+  margin-bottom: 18px;
+
+  padding: 6px 10px;
+
+  color: #a9d9c0;
+
+  background: rgba(34, 197, 94, 0.025);
+
+  border: 1px solid rgba(34, 197, 94, 0.13);
+
+  border-radius: 5px;
+
+  font-size: 0.67rem;
+  font-weight: 600;
+
+  white-space: nowrap;
+}
+
+
+.availability-dot {
+  width: 6px;
+  height: 6px;
+
+  flex-shrink: 0;
+
+  background: var(--success);
+
+  border-radius: 50%;
+
+  box-shadow:
+    0 0 0 3px rgba(34, 197, 94, 0.07);
+
+  animation: availabilityPulse 2s ease-in-out infinite;
+}
+
+
+/* =========================================================
+   GREETING
+   ========================================================= */
+
+.home-greeting {
+  margin: 0 0 4px;
+
+  color: var(--text-secondary);
+
+  font-size: 0.91rem;
+  font-weight: 500;
+}
+
+
+/* =========================================================
+   NAME
+   ========================================================= */
+
+.home-name {
+  margin: 0 0 10px;
+
+  color: var(--text-primary);
+
+  font-family: "Poppins", sans-serif;
+
+  font-size: clamp(3rem, 5.3vw, 4.7rem);
+
+  font-weight: 700;
+
+  line-height: 1.02;
+
+  letter-spacing: -0.055em;
+
+  overflow-wrap: break-word;
+}
+
+
+.home-name span {
+  color: var(--accent);
+}
+
+
+/* =========================================================
+   ROLE
+   ========================================================= */
+
+.home-role {
+  margin: 0 0 17px;
+
+  color: var(--text-primary);
+
+  font-size: clamp(1.15rem, 2vw, 1.45rem);
+
+  font-weight: 600;
+
+  letter-spacing: -0.02em;
+}
+
+
+.home-role::after {
+  content: "";
+
+  display: inline-block;
+
+  width: 3px;
+  height: 1em;
+
+  margin-left: 7px;
+
+  vertical-align: -0.12em;
+
+  background: var(--accent);
+
+  opacity: 0.7;
+
+  animation: cursorBlink 1s steps(1) infinite;
+}
+
+
+/* =========================================================
+   DESCRIPTION
+   ========================================================= */
+
+.home-description {
+  width: 100%;
+  max-width: 570px;
+
+  margin: 0 0 24px;
+
+  color: var(--text-secondary);
+
+  font-size: 0.88rem;
+
+  line-height: 1.75;
+}
+
+
+/* =========================================================
+   ACTIONS
+   ========================================================= */
+
+.home-actions {
+  width: 100%;
+
+  display: flex;
+
+  align-items: center;
+
+  flex-wrap: wrap;
+
+  gap: 9px;
+
+  margin-bottom: 21px;
+}
+
+
+/* =========================================================
+   META
+   ========================================================= */
+
+.home-meta {
+  display: flex;
+
+  align-items: center;
+
+  flex-wrap: wrap;
+
+  gap: 10px;
+
+  color: var(--text-muted);
+
+  font-size: 0.69rem;
+
+  font-weight: 500;
+}
+
+
+.home-meta span {
+  display: inline-flex;
+
+  align-items: center;
+
+  gap: 6px;
+}
+
+
+.home-meta svg {
+  color: var(--accent);
+
+  font-size: 0.66rem;
+}
+
+
+.home-meta-divider {
+  width: 3px;
+  height: 3px;
+
+  border-radius: 50%;
+
+  background: var(--text-muted);
+}
+
+
+/* =========================================================
+   SOCIALS
+   ========================================================= */
+
+.home-socials {
+  display: flex;
+
+  align-items: center;
+
+  gap: 7px;
+
+  margin-top: 18px;
+}
+
+
+.home-social-label {
+  margin-right: 3px;
+
+  color: var(--text-muted);
+
+  font-size: 0.67rem;
+
+  font-weight: 500;
+}
+
+
+.home-socials a {
+  width: 32px;
+  height: 32px;
+
+  display: inline-flex;
+
+  align-items: center;
+  justify-content: center;
+
+  color: var(--text-secondary);
+
+  background: rgba(255, 255, 255, 0.018);
+
+  border: 1px solid var(--border);
+
+  border-radius: 7px;
+
+  font-size: 0.75rem;
+
+  transition:
+    color 0.2s ease,
+    background 0.2s ease,
+    border-color 0.2s ease,
+    transform 0.2s ease;
+}
+
+
+.home-socials a:hover {
+  color: var(--accent);
+
+  background: var(--accent-soft);
+
+  border-color: rgba(13, 202, 240, 0.25);
+
+  transform: translateY(-2px);
+}
+
+
+/* =========================================================
+   PROFILE AREA
+   ========================================================= */
+
+.home-profile-area {
+  position: relative;
+
+  width: min(100%, 430px);
+
+  min-height: 430px;
+
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  justify-self: end;
+}
+
+
+/* =========================================================
+   PROFILE ORBITS
+   ========================================================= */
+
+.profile-orbit {
+  position: absolute;
+
+  border: 1px solid rgba(13, 202, 240, 0.06);
+
+  border-radius: 50%;
+
+  pointer-events: none;
+}
+
+
+.profile-orbit-one {
+  width: 360px;
+  height: 360px;
+
+  animation: orbitRotate 28s linear infinite;
+}
+
+
+.profile-orbit-two {
+  width: 300px;
+  height: 300px;
+
+  border-style: dashed;
+
+  border-color: rgba(255, 255, 255, 0.035);
+
+  animation: orbitRotateReverse 34s linear infinite;
+}
+
+
+/* =========================================================
+   PROFILE CARD
+   ========================================================= */
+
+.home-profile-card {
+  position: relative;
+
+  width: 300px;
+
+  padding: 20px;
+
+  background:
+    linear-gradient(
+      145deg,
+      rgba(255, 255, 255, 0.035),
+      rgba(255, 255, 255, 0.012)
+    );
+
+  border: 1px solid rgba(255, 255, 255, 0.075);
+
+  border-radius: 16px;
+
+  box-shadow:
+    0 20px 50px rgba(0, 0, 0, 0.28);
+
+  z-index: 2;
+
+  transition:
+    transform 0.3s ease,
+    border-color 0.3s ease;
+}
+
+
+.home-profile-card:hover {
+  transform: translateY(-4px);
+
+  border-color:
+    rgba(13, 202, 240, 0.18);
+}
+
+
+/* =========================================================
+   PROFILE CARD TOP
+   ========================================================= */
+
+.profile-card-top {
+  display: flex;
+
+  align-items: center;
+
+  gap: 10px;
+
+  margin-bottom: 18px;
+
+  color: var(--text-muted);
+
+  font-size: 0.57rem;
+
+  font-weight: 700;
+
+  letter-spacing: 0.15em;
+}
+
+
+.profile-line {
+  flex: 1;
+
+  height: 1px;
+
+  background: var(--border-light);
+}
+
+
+/* =========================================================
+   PROFILE IMAGE
+   ========================================================= */
+
+.profile-image-wrapper {
+  position: relative;
+
+  width: 205px;
+  height: 205px;
+
+  margin: 0 auto 17px;
+
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+}
+
+
+.profile-image-ring {
+  position: absolute;
+
+  inset: 0;
+
+  border: 1px solid rgba(13, 202, 240, 0.15);
+
+  border-radius: 50%;
+
+  transform: rotate(15deg);
+}
+
+
+.profile-image-ring::before {
+  content: "";
+
+  position: absolute;
+
+  top: 15px;
+  right: 14px;
+
+  width: 6px;
+  height: 6px;
+
+  background: var(--accent);
+
+  border-radius: 50%;
+
+  box-shadow:
+    0 0 10px rgba(13, 202, 240, 0.45);
+}
+
+
+.profile-image {
+  position: relative;
+
+  width: 181px;
+  height: 181px;
+
+  object-fit: cover;
+
+  border: 3px solid rgba(255, 255, 255, 0.06);
+
+  border-radius: 50%;
+
+  background: var(--bg-secondary);
+
+  z-index: 1;
+}
+
+
+/* =========================================================
+   PROFILE CAPTION
+   ========================================================= */
+
+.profile-caption {
+  padding-top: 2px;
+
+  text-align: center;
+}
+
+
+.profile-caption span {
+  color: var(--accent);
+
+  font-size: 0.57rem;
+
+  font-weight: 700;
+
+  letter-spacing: 0.15em;
+}
+
+
+.profile-caption p {
+  margin: 4px 0 0;
+
+  color: var(--text-muted);
+
+  font-size: 0.67rem;
+}
+
+
+/* =========================================================
+   SCROLL INDICATOR
+   ========================================================= */
+
+.home-scroll-indicator {
+  position: absolute;
+
+  bottom: 18px;
+  left: 50%;
+
+  display: flex;
+
+  align-items: center;
+
+  gap: 8px;
+
+  padding: 6px 9px;
+
+  color: var(--text-muted);
+
+  background: transparent;
+
+  border: 0;
+
+  transform: translateX(-50%);
+
+  font-size: 0.63rem;
+
+  font-weight: 500;
+
+  transition: color 0.2s ease;
+}
+
+
+.home-scroll-indicator svg {
+  color: var(--accent);
+
+  font-size: 0.57rem;
+
+  animation: scrollBounce 1.7s ease-in-out infinite;
+}
+
+
+.home-scroll-indicator:hover {
+  color: var(--text-primary);
+}
+
+
+/* =========================================================
+   ANIMATIONS
+   ========================================================= */
+
+@keyframes availabilityPulse {
+  0%,
+  100% {
+    opacity: 1;
+
+    box-shadow:
+      0 0 0 3px rgba(34, 197, 94, 0.07);
+  }
+
+  50% {
+    opacity: 0.65;
+
+    box-shadow:
+      0 0 0 5px rgba(34, 197, 94, 0.025);
+  }
+}
+
+
+@keyframes cursorBlink {
+  0%,
+  45% {
+    opacity: 0.7;
+  }
+
+  46%,
+  100% {
+    opacity: 0;
+  }
+}
+
+
+@keyframes orbitRotate {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+
+@keyframes orbitRotateReverse {
+  to {
+    transform: rotate(-360deg);
+  }
+}
+
+
+@keyframes scrollBounce {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(4px);
+  }
+}
+
+
+/* =========================================================
+   LARGE DESKTOP
+   ========================================================= */
+
+@media (min-width: 1200px) {
+  .home-layout {
+    gap: 80px;
+  }
+
+  .home-profile-area {
+    min-height: 450px;
+  }
+}
+
+
+/* =========================================================
+   LAPTOP
+   ========================================================= */
+
+@media (max-width: 1100px) {
+  .home-layout {
+    grid-template-columns:
+      minmax(0, 1fr)
+      minmax(300px, 0.75fr);
+
+    gap: 40px;
+  }
+
+  .home-name {
+    font-size: clamp(2.8rem, 6vw, 4rem);
+  }
+
+  .home-profile-area {
+    min-height: 390px;
+  }
+
+  .profile-orbit-one {
+    width: 330px;
+    height: 330px;
+  }
+
+  .profile-orbit-two {
+    width: 275px;
+    height: 275px;
+  }
+
+  .home-profile-card {
+    width: 285px;
+  }
+}
+
+
+/* =========================================================
+   TABLET
+   NAVBAR = 68px
+   ========================================================= */
+
+@media (max-width: 900px) {
+  .home-section {
+    min-height: auto;
+
+    /* Only tiny space below navbar */
+    padding: 12px 0 65px;
+  }
+
+  .home-layout {
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: stretch;
+
+    gap: 45px;
+  }
+
+  .home-content {
+    width: 100%;
+
+    max-width: 720px;
+
+    margin: 0 auto;
+
+    text-align: center;
+  }
+
+  .home-availability {
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .home-description {
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .home-actions {
+    justify-content: center;
+  }
+
+  .home-meta {
+    justify-content: center;
+  }
+
+  .home-socials {
+    justify-content: center;
+  }
+
+  .home-profile-area {
+    width: min(100%, 410px);
+
+    min-height: 400px;
+
+    margin: 0 auto;
+
+    justify-self: auto;
+  }
+
+  .home-scroll-indicator {
+    display: none;
+  }
+}
+
+
+/* =========================================================
+   LARGE MOBILE
+   ========================================================= */
+
+@media (max-width: 700px) {
+  .home-section {
+    padding: 8px 0 60px;
+  }
+
+  .home-layout {
+    gap: 40px;
+  }
+
+  .home-content {
+    text-align: center;
+  }
+
+  .home-name {
+    font-size:
+      clamp(
+        2.55rem,
+        11vw,
+        3.5rem
+      );
+
+    line-height: 1.04;
+  }
+
+  .home-role {
+    font-size: 1.08rem;
+  }
+
+  .home-description {
+    max-width: 560px;
+
+    font-size: 0.84rem;
+
+    line-height: 1.72;
+  }
+
+  .home-actions {
+    width: 100%;
+
+    justify-content: center;
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 8px;
+  }
+
+  .home-profile-area {
+    width: 100%;
+
+    min-height: 350px;
+  }
+
+  .home-profile-card {
+    width: 275px;
+
+    padding: 18px;
+  }
+
+  .profile-image-wrapper {
+    width: 180px;
+    height: 180px;
+  }
+
+  .profile-image {
+    width: 158px;
+    height: 158px;
+  }
+
+  .profile-orbit-one {
+    width: 315px;
+    height: 315px;
+  }
+
+  .profile-orbit-two {
+    width: 260px;
+    height: 260px;
+  }
+}
+
+
+/* =========================================================
+   MOBILE
+   NAVBAR = 64px
+   ========================================================= */
+
+@media (max-width: 576px) {
+  .home-section {
+    min-height: auto;
+
+    /* Very small navbar-to-home gap */
+    padding: 4px 0 50px;
+  }
+
+  .home-grid {
+    background-size: 52px 52px;
+
+    opacity: 0.20;
+  }
+
+  .home-glow-one {
+    width: 260px;
+    height: 260px;
+
+    top: -70px;
+    right: -120px;
+
+    filter: blur(80px);
+  }
+
+  .home-glow-two {
+    width: 200px;
+    height: 200px;
+
+    left: -140px;
+    bottom: -70px;
+
+    filter: blur(70px);
+  }
+
+
+  /* ---------- CONTENT ---------- */
+
+  .home-content {
+    padding: 0 2px;
+
+    text-align: center;
+  }
+
+  .home-availability {
+    margin-bottom: 16px;
+
+    padding: 5px 9px;
+
+    font-size: 0.62rem;
+  }
+
+  .availability-dot {
+    width: 5px;
+    height: 5px;
+  }
+
+  .home-greeting {
+    margin-bottom: 4px;
+
+    font-size: 0.82rem;
+  }
+
+  .home-name {
+    width: 100%;
+
+    margin-bottom: 9px;
+
+    font-size:
+      clamp(
+        2.35rem,
+        12vw,
+        3.15rem
+      );
+
+    line-height: 1.06;
+
+    letter-spacing: -0.045em;
+  }
+
+  .home-role {
+    margin-bottom: 14px;
+
+    font-size: 1rem;
+
+    line-height: 1.4;
+  }
+
+  .home-role::after {
+    width: 3px;
+
+    margin-left: 5px;
+  }
+
+  .home-description {
+    width: 100%;
+
+    margin-bottom: 22px;
+
+    padding: 0 5px;
+
+    font-size: 0.82rem;
+
+    line-height: 1.7;
+  }
+
+
+  /* ---------- BUTTONS ---------- */
+
+  .home-actions {
+    width: 100%;
+
+    display: flex;
+
+    flex-direction: row;
+
+    align-items: center;
+
+    justify-content: center;
+
+    gap: 8px;
+
+    margin-bottom: 19px;
+  }
+
+  .home-actions .btn-primary-custom,
+  .home-actions .btn-outline-custom {
+    flex: 0 0 auto;
+
+    width: auto;
+
+    min-width: 0;
+
+    min-height: 38px;
+
+    padding: 0 13px;
+
+    font-size: 0.72rem;
+
+    border-radius: 6px;
+  }
+
+  .home-actions .btn-primary-custom svg,
+  .home-actions .btn-outline-custom svg {
+    font-size: 0.68rem;
+  }
+
+
+  /* ---------- META ---------- */
+
+  .home-meta {
+    justify-content: center;
+
+    gap: 7px;
+
+    font-size: 0.62rem;
+
+    line-height: 1.5;
+  }
+
+  .home-meta span {
+    gap: 4px;
+  }
+
+  .home-meta svg {
+    font-size: 0.6rem;
+  }
+
+  .home-meta-divider {
+    width: 2px;
+    height: 2px;
+  }
+
+
+  /* ---------- SOCIALS ---------- */
+
+  .home-socials {
+    justify-content: center;
+
+    margin-top: 16px;
+  }
+
+  .home-social-label {
+    font-size: 0.63rem;
+  }
+
+  .home-socials a {
+    width: 31px;
+    height: 31px;
+
+    font-size: 0.72rem;
+  }
+
+
+  /* ---------- PROFILE ---------- */
+
+  .home-profile-area {
+    width: 100%;
+
+    min-height: 325px;
+
+    margin-top: 2px;
+  }
+
+  .home-profile-card {
+    width: 255px;
+
+    padding: 16px;
+
+    border-radius: 14px;
+  }
+
+  .profile-card-top {
+    margin-bottom: 15px;
+
+    font-size: 0.52rem;
+  }
+
+  .profile-image-wrapper {
+    width: 165px;
+    height: 165px;
+
+    margin-bottom: 14px;
+  }
+
+  .profile-image {
+    width: 145px;
+    height: 145px;
+
+    border-width: 2px;
+  }
+
+  .profile-image-ring::before {
+    top: 11px;
+    right: 11px;
+
+    width: 5px;
+    height: 5px;
+  }
+
+  .profile-caption span {
+    font-size: 0.53rem;
+  }
+
+  .profile-caption p {
+    font-size: 0.62rem;
+  }
+
+  .profile-orbit-one {
+    width: 285px;
+    height: 285px;
+  }
+
+  .profile-orbit-two {
+    width: 235px;
+    height: 235px;
+  }
+}
+
+
+/* =========================================================
+   SMALL MOBILE
+   ========================================================= */
+
+@media (max-width: 420px) {
+  .home-section {
+    padding: 2px 0 45px;
+  }
+
+  .home-name {
+    font-size: 2.25rem;
+
+    letter-spacing: -0.04em;
+  }
+
+  .home-role {
+    font-size: 0.95rem;
+  }
+
+  .home-description {
+    padding: 0;
+
+    font-size: 0.79rem;
+  }
+
+
+  /* ---------- BUTTONS ---------- */
+
+  .home-actions {
+    width: 100%;
+
+    display: flex;
+
+    flex-direction: row;
+
+    justify-content: center;
+
+    align-items: center;
+
+    gap: 7px;
+  }
+
+  .home-actions .btn-primary-custom,
+  .home-actions .btn-outline-custom {
+    width: auto;
+
+    min-width: 0;
+
+    min-height: 36px;
+
+    padding: 0 11px;
+
+    font-size: 0.68rem;
+  }
+
+  .home-actions .btn-primary-custom svg,
+  .home-actions .btn-outline-custom svg {
+    font-size: 0.62rem;
+  }
+
+
+  /* ---------- META ---------- */
+
+  .home-meta {
+    flex-direction: column;
+
+    gap: 5px;
+  }
+
+  .home-meta-divider {
+    display: none !important;
+  }
+
+
+  /* ---------- SOCIALS ---------- */
+
+  .home-socials {
+    margin-top: 15px;
+  }
+
+
+  /* ---------- PROFILE ---------- */
+
+  .home-profile-area {
+    min-height: 295px;
+  }
+
+  .home-profile-card {
+    width: 235px;
+
+    padding: 14px;
+  }
+
+  .profile-card-top {
+    margin-bottom: 13px;
+
+    font-size: 0.48rem;
+  }
+
+  .profile-image-wrapper {
+    width: 150px;
+    height: 150px;
+  }
+
+  .profile-image {
+    width: 132px;
+    height: 132px;
+  }
+
+  .profile-orbit-one {
+    width: 260px;
+    height: 260px;
+  }
+
+  .profile-orbit-two {
+    width: 215px;
+    height: 215px;
+  }
+
+  .profile-caption span {
+    font-size: 0.5rem;
+  }
+
+  .profile-caption p {
+    font-size: 0.59rem;
+  }
+}
+
+
+/* =========================================================
+   VERY SMALL DEVICES
+   ========================================================= */
+
+@media (max-width: 350px) {
+  .home-section {
+    padding-top: 0;
+  }
+
+  .home-name {
+    font-size: 2rem;
+  }
+
+  .home-role {
+    font-size: 0.9rem;
+  }
+
+  .home-description {
+    font-size: 0.76rem;
+  }
+
+  .home-actions {
+    gap: 6px;
+  }
+
+  .home-actions .btn-primary-custom,
+  .home-actions .btn-outline-custom {
+    min-height: 34px;
+
+    padding: 0 9px;
+
+    font-size: 0.64rem;
+  }
+
+  .home-actions .btn-primary-custom svg,
+  .home-actions .btn-outline-custom svg {
+    font-size: 0.58rem;
+  }
+
+  .home-profile-area {
+    min-height: 275px;
+  }
+
+  .home-profile-card {
+    width: 215px;
+
+    padding: 12px;
+  }
+
+  .profile-image-wrapper {
+    width: 138px;
+    height: 138px;
+  }
+
+  .profile-image {
+    width: 120px;
+    height: 120px;
+  }
+
+  .profile-orbit-one {
+    width: 235px;
+    height: 235px;
+  }
+
+  .profile-orbit-two {
+    width: 195px;
+    height: 195px;
+  }
+}
+
+
+/* =========================================================
+   REDUCED MOTION
+   ========================================================= */
+
+@media (prefers-reduced-motion: reduce) {
+  .availability-dot,
+  .home-role::after,
+  .profile-orbit-one,
+  .profile-orbit-two,
+  .home-scroll-indicator svg {
+    animation: none;
+  }
+}

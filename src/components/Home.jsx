@@ -1,155 +1,200 @@
-import { Container, Button, Row, Col, Badge } from "react-bootstrap";
-import { FaGithub, FaLinkedin, FaDownload, FaCode } from "react-icons/fa";
+import {
+  FaArrowDown,
+  FaArrowRight,
+  FaDownload,
+  FaGithub,
+  FaLinkedinIn,
+  FaMapMarkerAlt,
+} from "react-icons/fa";
+
+import "./Home.css";
 
 function Home() {
+  const scrollToSection = (id) => {
+    const section = document.getElementById(id);
+
+    if (section) {
+      section.scrollIntoView({
+        behavior: "smooth",
+        block: "start",
+      });
+    }
+  };
+
   return (
-    <section
-      id="home"
-      className="text-white"
-      style={{
-        minHeight: "100vh",
+    <section id="home" className="home-section">
+      <div className="home-background">
+        <span className="home-grid" />
+        <span className="home-glow home-glow-one" />
+        <span className="home-glow home-glow-two" />
+      </div>
 
-        paddingTop: "70px",
+      <div className="container-custom">
+        <div className="home-layout">
 
-        background: "linear-gradient(135deg,#050505,#101820)",
-      }}
-    >
-      <Container>
-        <Row
-          className="align-items-center"
-          style={{
-            minHeight: "calc(100vh - 70px)",
-          }}
-        >
-          {/* LEFT */}
+          {/* =========================
+              LEFT CONTENT
+          ========================= */}
+          <div className="home-content" data-aos="fade-up">
 
-          <Col lg={7}>
-            <Badge
-              bg="info"
-              text="dark"
-              className="mb-4 px-3 py-2 rounded-pill"
-            >
-              Available for Developer Opportunities
-            </Badge>
+            <div className="home-availability">
+              <span className="availability-dot" />
+              Open to Full-Time Opportunities
+            </div>
 
-            <h5 className="text-info">Hello, I'm</h5>
-
-            <h1 className="display-2 fw-bold">Abdul Mudassir</h1>
-
-            <h2 className="text-info fw-bold">Java Full Stack Developer</h2>
-
-            <p
-              className="lead text-secondary mt-4"
-              style={{
-                maxWidth: "600px",
-              }}
-            >
-              I build responsive, scalable and secure web applications using
-              React, Java, Spring Boot, REST API and MySQL.
+            <p className="home-greeting">
+              Hello, I’m
             </p>
 
-            <div className="my-4">
-              {["Java", "React", "Spring Boot", "MySQL", "Oracle", "AWS"].map(
-                (skill) => (
-                  <Badge
-                    key={skill}
-                    bg="dark"
-                    className="
-                    border border-info
-                    rounded-pill
-                    px-3 py-2
-                    me-2 mb-2
-                  "
-                  >
-                    {skill}
-                  </Badge>
-                ),
-              )}
+            <h1 className="home-name">
+              Abdul <span>Mudassir</span>
+            </h1>
+
+            <h2 className="home-role">
+              Java Full Stack Developer
+            </h2>
+
+            <p className="home-description">
+              Computer Science graduate focused on building reliable and
+              user-friendly web applications using Java, Spring Boot,
+              React and database technologies.
+            </p>
+
+            <div className="home-actions">
+
+              <a
+                href="/Ab_Mudasssir_Java.pdf"
+                target="_blank"
+                rel="noreferrer"
+                className="btn-primary-custom"
+              >
+                <FaDownload />
+                Download Resume
+              </a>
+
+              <button
+                type="button"
+                className="btn-outline-custom"
+                onClick={() => scrollToSection("projects")}
+              >
+                View Projects
+                <FaArrowRight />
+              </button>
+
             </div>
 
-            <div className="d-flex flex-wrap gap-3">
-              <Button
-                variant="info"
-                href="/Abdul_Mudassir_AE.pdf"
-                download
-                className="fw-bold rounded-pill px-4"
-              >
-                <FaDownload className="me-2" />
-                Resume
-              </Button>
+            <div className="home-meta">
 
-              <Button
-                variant="outline-light"
+              <span>
+                <FaMapMarkerAlt />
+                India
+              </span>
+
+              <span className="home-meta-divider" />
+
+              <span>
+                B.Sc. Computer Science · 2025
+              </span>
+
+            </div>
+
+            <div className="home-socials">
+
+              <span className="home-social-label">
+                Connect
+              </span>
+
+              <a
                 href="https://github.com/ab-mudassir04"
                 target="_blank"
-                rel="noopener noreferrer"
-                className="rounded-pill px-4"
+                rel="noreferrer"
+                aria-label="GitHub"
               >
-                <FaGithub className="me-2" />
-                GitHub
-              </Button>
+                <FaGithub />
+              </a>
 
-              <Button
-                variant="outline-info"
+              <a
                 href="https://www.linkedin.com/in/ab-mudassir04/"
                 target="_blank"
-                rel="noopener noreferrer"
-                className="rounded-pill px-4"
+                rel="noreferrer"
+                aria-label="LinkedIn"
               >
-                <FaLinkedin className="me-2" />
-                LinkedIn
-              </Button>
+                <FaLinkedinIn />
+              </a>
+
             </div>
-          </Col>
+          </div>
 
-          {/* RIGHT PROFILE */}
 
-          <Col lg={5} className="text-center mt-5 mt-lg-0">
-            <div
-              style={{
-                maxWidth: "380px",
+          {/* =========================
+              RIGHT PROFILE
+          ========================= */}
+          <div
+            className="home-profile-area"
+            data-aos="fade-left"
+            data-aos-delay="100"
+          >
 
-                margin: "auto",
+            <div className="profile-orbit profile-orbit-one" />
+            <div className="profile-orbit profile-orbit-two" />
 
-                padding: "25px",
+            <div className="home-profile-card">
 
-                borderRadius: "30px",
+              <div className="profile-card-top">
+                <span>
+                  PORTFOLIO
+                </span>
 
-                background: "rgba(255,255,255,0.06)",
+                <span className="profile-line" />
+              </div>
 
-                backdropFilter: "blur(15px)",
+              <div className="profile-image-wrapper">
 
-                WebkitBackdropFilter: "blur(15px)",
+                <div className="profile-image-ring" />
 
-                border: "1px solid rgba(255,255,255,0.12)",
+                <img
+                  src="/profile.jpg"
+                  alt="Abdul Mudassir"
+                  className="profile-image"
+                />
 
-                boxShadow: "0 0 40px rgba(13,202,240,0.25)",
-              }}
-            >
-              <FaCode className="text-info fs-1 mb-3" />
+              </div>
 
-              <img
-                src="/profile.jpg"
-                alt="Abdul Mudassir"
-                className="rounded-circle img-fluid"
-                width="300"
-                height="300"
-                style={{
-                  transition: "0.3s",
-                }}
-                onMouseEnter={(e) => {
-                  e.currentTarget.style.transform = "scale(1.05)";
-                }}
-                onMouseLeave={(e) => {
-                  e.currentTarget.style.transform = "scale(1)";
-                }}
-              />
+              <div className="profile-caption">
 
-              <h4 className="text-info mt-4 mb-0">Full Stack Developer</h4>
+                <span>
+                  JAVA FULL STACK
+                </span>
+
+                <p>
+                  Developer
+                </p>
+
+              </div>
+
             </div>
-          </Col>
-        </Row>
-      </Container>
+          </div>
+
+        </div>
+
+
+        {/* =========================
+            SCROLL INDICATOR
+        ========================= */}
+        <button
+          type="button"
+          className="home-scroll-indicator"
+          onClick={() => scrollToSection("about")}
+          aria-label="Scroll to About section"
+        >
+          <span>
+            Scroll to explore
+          </span>
+
+          <FaArrowDown />
+        </button>
+
+      </div>
     </section>
   );
 }
