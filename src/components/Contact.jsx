@@ -23,11 +23,13 @@ function Contact() {
   });
 
   const [isSending, setIsSending] = useState(false);
+
   const [status, setStatus] = useState({
     type: "",
     message: "",
   });
 
+  // Handle input changes
   const handleChange = (event) => {
     const { name, value } = event.target;
 
@@ -42,6 +44,7 @@ function Contact() {
     });
   };
 
+  // Handle Email / Phone selection
   const handleContactMethodChange = (method) => {
     setFormData((previous) => ({
       ...previous,
@@ -56,8 +59,49 @@ function Contact() {
     });
   };
 
+  // Send message through EmailJS
   const handleSubmit = async (event) => {
     event.preventDefault();
+
+    if (isSending) return;
+
+    const name = formData.name.trim();
+    const email = formData.email.trim();
+    const phone = formData.phone.trim();
+    const message = formData.message.trim();
+
+    // Frontend validation
+    if (!name) {
+      setStatus({
+        type: "error",
+        message: "Please enter your name.",
+      });
+      return;
+    }
+
+    if (formData.contactMethod === "email" && !email) {
+      setStatus({
+        type: "error",
+        message: "Please enter your email address.",
+      });
+      return;
+    }
+
+    if (formData.contactMethod === "phone" && !phone) {
+      setStatus({
+        type: "error",
+        message: "Please enter your phone number.",
+      });
+      return;
+    }
+
+    if (!message) {
+      setStatus({
+        type: "error",
+        message: "Please enter your message.",
+      });
+      return;
+    }
 
     setIsSending(true);
 
@@ -66,28 +110,34 @@ function Contact() {
       message: "",
     });
 
-    const contactValue =
-      formData.contactMethod === "email"
-        ? formData.email
-        : formData.phone;
-
+    // These names MUST match the EmailJS template variables
     const templateParams = {
-      from_name: formData.name,
-      contact_method:
-        formData.contactMethod === "email" ? "Email" : "Phone",
-      contact_value: contactValue,
-      message: formData.message,
+      user_name: name,
+      user_email: formData.contactMethod === "email" ? email : "",
+      user_phone: formData.contactMethod === "phone" ? phone : "",
+      message: message,
     };
 
+    // Temporary debugging information
+    console.log("EmailJS Configuration:", {
+      service: import.meta.env.VITE_EMAILJS_SERVICE_ID,
+      template: import.meta.env.VITE_EMAILJS_TEMPLATE_ID,
+      publicKey: import.meta.env.VITE_EMAILJS_PUBLIC_KEY,
+    });
+
+    console.log("EmailJS Template Params:", templateParams);
+
     try {
-      await emailjs.send(
+      const response = await emailjs.send(
         import.meta.env.VITE_EMAILJS_SERVICE_ID,
         import.meta.env.VITE_EMAILJS_TEMPLATE_ID,
         templateParams,
         {
           publicKey: import.meta.env.VITE_EMAILJS_PUBLIC_KEY,
-        }
+        },
       );
+
+      console.log("EmailJS Success:", response);
 
       setStatus({
         type: "success",
@@ -102,11 +152,16 @@ function Contact() {
         message: "",
       });
     } catch (error) {
-      console.error("EmailJS Error:", error);
+      console.error("========== EMAILJS ERROR ==========");
+      console.error("Status:", error?.status);
+      console.error("Text:", error?.text);
+      console.error("Message:", error?.message);
+      console.error("Full Error:", error);
 
       setStatus({
         type: "error",
         message:
+          error?.text ||
           "Unable to send your message right now. Please try again.",
       });
     } finally {
@@ -117,7 +172,6 @@ function Contact() {
   return (
     <section id="contact" className="contact-section section">
       <div className="container-custom">
-
         {/* Section Header */}
         <div className="section-header" data-aos="fade-up">
           <span className="section-label">Contact</span>
@@ -127,32 +181,33 @@ function Contact() {
           </h2>
 
           <p className="section-description">
-            Whether you have a development opportunity, project idea or simply
-            want to connect, feel free to reach out.
+            Have a development opportunity, project idea, or simply want to
+            connect? Feel free to reach out.
           </p>
         </div>
 
+        {/* Contact Layout */}
         <div className="contact-layout">
-
-          {/* Contact Information */}
+          {/* Left Side */}
           <div
             className="contact-intro"
             data-aos="fade-right"
             data-aos-delay="80"
           >
-            <span className="contact-number">01</span>
+            <div className="contact-intro-top">
+              <span className="contact-number">01</span>
 
-            <h3>Start a conversation.</h3>
+              <h3>Start a conversation.</h3>
 
-            <p>
-              I am interested in opportunities where I can contribute to
-              real-world software development, work with experienced teams and
-              continue growing as a developer.
-            </p>
+              <p>
+                I am open to developer opportunities, real-world projects, and
+                meaningful technical collaborations where I can continue growing
+                as a Java Full Stack Developer.
+              </p>
+            </div>
 
+            {/* Contact Details */}
             <div className="contact-details">
-
-              {/* Email */}
               <a
                 href="mailto:mudassirabdul84@gmail.com"
                 className="contact-detail"
@@ -161,24 +216,22 @@ function Contact() {
                   <FaEnvelope />
                 </span>
 
-                <span>
+                <span className="contact-detail-content">
                   <small>Email</small>
                   <strong>mudassirabdul84@gmail.com</strong>
                 </span>
               </a>
 
-              {/* Location */}
               <div className="contact-detail">
                 <span className="contact-detail-icon">
                   <FaMapMarkerAlt />
                 </span>
 
-                <span>
+                <span className="contact-detail-content">
                   <small>Location</small>
                   <strong>India</strong>
                 </span>
               </div>
-
             </div>
 
             {/* Social Links */}
@@ -186,12 +239,11 @@ function Contact() {
               <span>CONNECT WITH ME</span>
 
               <div className="contact-socials">
-
                 <a
                   href="https://github.com/ab-mudassir04"
                   target="_blank"
-                  rel="noreferrer"
-                  aria-label="GitHub"
+                  rel="noopener noreferrer"
+                  aria-label="Visit Abdul Mudassir's GitHub profile"
                 >
                   <FaGithub />
                   <span>GitHub</span>
@@ -200,41 +252,35 @@ function Contact() {
                 <a
                   href="https://www.linkedin.com/in/ab-mudassir04/"
                   target="_blank"
-                  rel="noreferrer"
-                  aria-label="LinkedIn"
+                  rel="noopener noreferrer"
+                  aria-label="Visit Abdul Mudassir's LinkedIn profile"
                 >
                   <FaLinkedinIn />
                   <span>LinkedIn</span>
                 </a>
-
               </div>
             </div>
           </div>
 
-          {/* Contact Form */}
+          {/* Right Side - Form */}
           <div
             className="contact-form-wrapper"
             data-aos="fade-left"
             data-aos-delay="140"
           >
-
-            {/* Form Header */}
             <div className="contact-form-header">
-              <div>
+              <div className="contact-form-title">
                 <span>02</span>
                 <h3>Send a message</h3>
               </div>
 
-              <FaPaperPlane />
+              <FaPaperPlane aria-hidden="true" />
             </div>
 
-            <form className="contact-form" onSubmit={handleSubmit}>
-
+            <form className="contact-form" onSubmit={handleSubmit} noValidate>
               {/* Name */}
               <div className="contact-field">
-                <label htmlFor="name">
-                  Your Name
-                </label>
+                <label htmlFor="name">Your Name</label>
 
                 <input
                   id="name"
@@ -244,29 +290,26 @@ function Contact() {
                   onChange={handleChange}
                   placeholder="Enter your name"
                   autoComplete="name"
-                  required
+                  maxLength={80}
                 />
               </div>
 
-              {/* Contact Preference */}
+              {/* Contact Method */}
               <div className="contact-field">
+                <label>Preferred Contact Method</label>
 
-                <label>
-                  Preferred Contact Method
-                </label>
-
-                <div className="contact-method-options">
-
+                <div
+                  className="contact-method-options"
+                  role="group"
+                  aria-label="Preferred contact method"
+                >
                   <button
                     type="button"
                     className={`contact-method ${
-                      formData.contactMethod === "email"
-                        ? "active"
-                        : ""
+                      formData.contactMethod === "email" ? "active" : ""
                     }`}
-                    onClick={() =>
-                      handleContactMethodChange("email")
-                    }
+                    onClick={() => handleContactMethodChange("email")}
+                    aria-pressed={formData.contactMethod === "email"}
                   >
                     <FaEnvelope />
                     <span>Email</span>
@@ -275,28 +318,21 @@ function Contact() {
                   <button
                     type="button"
                     className={`contact-method ${
-                      formData.contactMethod === "phone"
-                        ? "active"
-                        : ""
+                      formData.contactMethod === "phone" ? "active" : ""
                     }`}
-                    onClick={() =>
-                      handleContactMethodChange("phone")
-                    }
+                    onClick={() => handleContactMethodChange("phone")}
+                    aria-pressed={formData.contactMethod === "phone"}
                   >
                     <FaPhone />
                     <span>Phone</span>
                   </button>
-
                 </div>
               </div>
 
               {/* Email */}
               {formData.contactMethod === "email" && (
                 <div className="contact-field">
-
-                  <label htmlFor="email">
-                    Email Address
-                  </label>
+                  <label htmlFor="email">Email Address</label>
 
                   <input
                     id="email"
@@ -306,19 +342,15 @@ function Contact() {
                     onChange={handleChange}
                     placeholder="Enter your email"
                     autoComplete="email"
-                    required
+                    maxLength={120}
                   />
-
                 </div>
               )}
 
               {/* Phone */}
               {formData.contactMethod === "phone" && (
                 <div className="contact-field">
-
-                  <label htmlFor="phone">
-                    Phone Number
-                  </label>
+                  <label htmlFor="phone">Phone Number</label>
 
                   <input
                     id="phone"
@@ -329,19 +361,14 @@ function Contact() {
                     placeholder="+91 XXXXX XXXXX"
                     autoComplete="tel"
                     inputMode="tel"
-                    pattern="[+]?[0-9\s()-]{10,16}"
-                    required
+                    maxLength={20}
                   />
-
                 </div>
               )}
 
               {/* Message */}
-              <div className="contact-field">
-
-                <label htmlFor="message">
-                  Message
-                </label>
+              <div className="contact-field contact-message-field">
+                <label htmlFor="message">Message</label>
 
                 <textarea
                   id="message"
@@ -349,17 +376,17 @@ function Contact() {
                   value={formData.message}
                   onChange={handleChange}
                   placeholder="Tell me about your opportunity or project..."
-                  rows="6"
-                  required
+                  rows={4}
+                  maxLength={1000}
                 />
-
               </div>
 
-              {/* Success / Error */}
+              {/* Status */}
               {status.message && (
                 <div
                   className={`contact-status ${status.type}`}
                   role="alert"
+                  aria-live="polite"
                 >
                   {status.message}
                 </div>
@@ -371,23 +398,19 @@ function Contact() {
                 className="contact-submit"
                 disabled={isSending}
               >
-                <span>
-                  {isSending ? "Sending..." : "Send Message"}
-                </span>
+                <span>{isSending ? "Sending..." : "Send Message"}</span>
 
-                {!isSending && <FaArrowRight />}
+                {!isSending && <FaArrowRight aria-hidden="true" />}
 
                 {isSending && (
-                  <span className="contact-spinner" />
+                  <span className="contact-spinner" aria-hidden="true" />
                 )}
               </button>
-
             </form>
 
             <p className="contact-form-note">
               Your message will be delivered directly to my inbox.
             </p>
-
           </div>
         </div>
 
@@ -400,11 +423,10 @@ function Contact() {
           <span className="contact-closing-line" />
 
           <p>
-            Open to connecting with developers, recruiters and teams working on
+            Open to connecting with developers, recruiters, and teams working on
             meaningful software products.
           </p>
         </div>
-
       </div>
     </section>
   );
